@@ -1,17 +1,40 @@
 // prompt function 
 // switch function for employee class (manager, intern, engineer)
 
-//name
-//
 
 const inquirer = require("inquirer");
 const fs = require("fs");
-const Employee = require("./lib/employee.js");
 const Manager = require("./lib/manager.js");
 const Engineer = require("./lib/engineer.js");
 const Intern = require("./lib/intern.js")
-const createHTML
+const teamMembers = []
+//const createHTML = require("./generateHTML.js");
 
+
+
+function init() {
+  inquirer.prompt(questions).then((data) => {
+    if(data.employeeType==="Manager") {
+      const addManager = new Manager(data.name, data.id, data.email, data.office)
+      teamMembers.push(addManager);
+      console.log(teamMembers);
+    } else if(data.employeeType==="Engineer") {
+      const addEngineer = new Engineer(data.name, data.id, data.email, data.github)
+      teamMembers.push(addEngineer);
+      console.log(teamMembers);
+    } else (data.employeeType==="Intern"); {
+      const addIntern = new Intern(data.name, data.id, data.email, data.college)
+      teamMembers.push(addIntern);
+      console.log(teamMembers);
+    };
+ 
+if(data.continue==="yes") {
+  init();
+} else {
+  createHTML();
+}
+  });
+};
 
 // Creates an array of questions about employees
 const questions = [
@@ -19,19 +42,29 @@ const questions = [
       type: "input",
       name: "name",
       message: "What is the name of the team member?",
-      validate: isValid
+      validate: answer => {
+      if (answer !== "") {
+      return true;
+}
+return "Please enter a name with at least one valid letter.";
+}
     },
     {
       type: "input",
       name: "id",
       message: "What is the team member's employee id number?",
-      validate: isValid
     },
     {
       type: "input",
       name: "email",
       message: "What is the team member's email address?",
-      validate: isValid
+      validate: answer => {
+        const valid = answer.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g);
+        if (valid) {
+            return true;
+        }
+        return "Please enter a valid email address";
+    }
     },
     {
       type: "list",
@@ -44,7 +77,6 @@ const questions = [
       type: "input",
       name: "office",
       message: "What is the manager's office number?",
-      validate: isValid
      
     },
     {
@@ -52,7 +84,6 @@ const questions = [
       type: "input",
       name: "github",
       message: "What is the engineer's github username?",
-      validate: isValid
 
   },
   {
@@ -60,33 +91,20 @@ const questions = [
       type: "input",
       name: "college",
       message: "What college/university does the intern attend?",
-      validate: isValid
   },
-  {
-      type: "list",
-      name: "continue",
-      choices: ['yes', 'no'],
-      message: "Do you wish to add another employee?",
-      validate: response=>{
-        if(response.choices==="yes") {
-          init();
-        } else {
-          createHTML;
-        }
-      }
+{
+  type: "list",
+  name: "continue",
+  choices: ['yes', 'no'],
+  message: "Do you wish to add another employee?",
   }
-  console.log(data)
-  ];
+];
+
 
 function writeToFile(fileName, data) {
-  fs.writeFileSync(fileName, data)
-};
-
-  function init() {
-    inquirer.prompt(questions).then((data) => {
-        createHTML = generateHTML(data);
-        writeToFile()
-    });
-};
+  fs.writeFile(fileName,data, (err) => {
+      err ? console.error(err) : console.log('HTML file generated!');
+  })
+}
 
 init ();

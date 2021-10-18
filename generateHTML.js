@@ -1,5 +1,5 @@
-const generateHTML = ({ name, location, github,  }) =>
-  `<!DOCTYPE html>
+const generateHTML = () => {
+return  `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -14,27 +14,12 @@ const generateHTML = ({ name, location, github,  }) =>
   
   <div class="container">
     <div class = "card" id = "teamCards>
-      <div class = "card-body" id = "managerCard">
-      // ?
-      </div>
-      <div
-
-    <h3></h3>
-    <ul class="employeeCards">
-        <li class="engineerCard"></li>
-        <li class="internCard"></li>
-    </ul>
     </div>
   </div>
 </div>
 </body>
 </html>`;
+};
 
-const createHTML = () => {
-    // Use writeFileSync method to use promises instead of a callback function
-      fs.writeFileSync('index.html', generateHTML(data));
-      .then(() => console.log('Successfully wrote to index.html'))
-      .catch((err) => console.error(err));
-  };
-  
-  createHTML();
+
+module.exports(generateHTML);
