@@ -8,7 +8,7 @@ const Manager = require("./lib/manager.js");
 const Engineer = require("./lib/engineer.js");
 const Intern = require("./lib/intern.js")
 const teamMembers = []
-//const createHTML = require("./generateHTML.js");
+const generateHTML = require("./generateHTML.js");
 
 
 
@@ -25,13 +25,12 @@ function init() {
       teamMembers.push(addEngineer);
     }
  //    console.log(teamMembers);
-    if(data.employeeType==='Intern'); {
+    if(data.employeeType==='Intern') {
       const addIntern = new Intern(data.name, data.id, data.email, data.college)
       teamMembers.push(addIntern);
-      console.log(teamMembers);
     };
- 
 
+    console.log(teamMembers);
 
 if(data.continue==="yes") {
   init();
@@ -78,24 +77,25 @@ return "Please enter a name with at least one valid letter.";
       choices: ['Manager', 'Engineer', 'Intern'],
     },
     {
-      when: (data) => data.employeeType === "Manager",
+    
       type: "input",
       name: "office",
       message: "What is the manager's office number?",
-     
+      when: (data) => data.employeeType === "Manager",
     },
     {
-      when: (data) => data.employeeType === "Engineer",
+
       type: "input",
       name: "github",
       message: "What is the engineer's github username?",
-
+      when: (data) => data.employeeType === "Engineer",
   },
   {
-      when: (data) => data.employeeType === "Intern",
+
       type: "input",
       name: "college",
       message: "What college/university does the intern attend?",
+      when: (data) => data.employeeType === "Intern",
   },
 {
   type: "list",
@@ -107,24 +107,24 @@ return "Please enter a name with at least one valid letter.";
 
 
 function writeToFile(fileName, data) {
-  fs.writeFile(fileName,data, (err) => {
+  fs.writeFile(fileName,generateHTML(teamMembers), (err) => {
       err ? console.error(err) : console.log('HTML file generated!');
   })
 }
 
-// const managerCard = (data) => {
-//   return `<div class="card">
-//   <img src="..." class="card-img-top" alt="...">
-//   <div class="card-body">
-//     <h5 class="card-title">Manager</h5>
-//     <h6 class="card-title">$(Manager.name</h6>
-//     <p class="card-text">ID: $(Manager.id</p>
-//     <p class="card-text"><a href=</p>
-//     <p class="card-text"></small></p>
-//   </div>
-// </div>
-//   `
-// }
+const managerCard = (data) => {
+  return `<div class="card">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Manager</h5>
+    <h6 class="card-title">${data.name}</h6>
+    <p class="card-text">ID: ${data.id}</p>
+    <p class="card-text"><a href=</p>
+    <p class="card-text" >Office: ${data.office}></p>
+  </div>
+</div>
+  `
+}
 
 const employeeCard = (data) => {
   const cards = ``

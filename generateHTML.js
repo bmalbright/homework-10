@@ -1,3 +1,7 @@
+generateCards ()
+
+
+
 const generateHTML = () => {
 return  `<!DOCTYPE html>
 <html lang="en">
@@ -14,12 +18,16 @@ return  `<!DOCTYPE html>
   
   <div class="container">
     <div class = "card" id = "teamCards>
+
     </div>
   </div>
 </div>
 </body>
 </html>`;
 };
+
+
+
 
 
 module.exports(generateHTML);
