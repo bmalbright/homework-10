@@ -17,17 +17,19 @@ function init() {
     if(data.employeeType==="Manager") {
       const addManager = new Manager(data.name, data.id, data.email, data.office)
       teamMembers.push(addManager);
-      console.log(teamMembers);
+ //     console.log(teamMembers);
     } else if(data.employeeType==="Engineer") {
       const addEngineer = new Engineer(data.name, data.id, data.email, data.github)
       teamMembers.push(addEngineer);
-      console.log(teamMembers);
+ //    console.log(teamMembers);
     } else (data.employeeType==="Intern"); {
       const addIntern = new Intern(data.name, data.id, data.email, data.college)
       teamMembers.push(addIntern);
-      console.log(teamMembers);
+ //     console.log(teamMembers);
     };
  
+console.log(teamMembers);
+
 if(data.continue==="yes") {
   init();
 } else {
@@ -105,6 +107,33 @@ function writeToFile(fileName, data) {
   fs.writeFile(fileName,data, (err) => {
       err ? console.error(err) : console.log('HTML file generated!');
   })
+}
+
+// const managerCard = (data) => {
+//   return `<div class="card">
+//   <img src="..." class="card-img-top" alt="...">
+//   <div class="card-body">
+//     <h5 class="card-title">Manager</h5>
+//     <h6 class="card-title">$(Manager.name</h6>
+//     <p class="card-text">ID: $(Manager.id</p>
+//     <p class="card-text"><a href=</p>
+//     <p class="card-text"></small></p>
+//   </div>
+// </div>
+//   `
+// }
+
+const employeeCard = (data) => {
+  const cards = ``
+  data.forEach((element) => {
+    if (element instanceof Manager) {
+    cards = cards + ``
+  } else if (element instanceof Engineer) {
+    cards = cards + ``
+  } else {cards = cards + ``};
+  });
+
+
 }
 
 init ();
