@@ -14,21 +14,24 @@ const teamMembers = []
 
 function init() {
   inquirer.prompt(questions).then((data) => {
-    if(data.employeeType==="Manager") {
+    console.log(data);
+    if(data.employeeType==='Manager') {
       const addManager = new Manager(data.name, data.id, data.email, data.office)
       teamMembers.push(addManager);
+    }
  //     console.log(teamMembers);
-    } else if(data.employeeType==="Engineer") {
+    if(data.employeeType==='Engineer') {
       const addEngineer = new Engineer(data.name, data.id, data.email, data.github)
       teamMembers.push(addEngineer);
+    }
  //    console.log(teamMembers);
-    } else (data.employeeType==="Intern"); {
+    if(data.employeeType==='Intern'); {
       const addIntern = new Intern(data.name, data.id, data.email, data.college)
       teamMembers.push(addIntern);
- //     console.log(teamMembers);
+      console.log(teamMembers);
     };
  
-console.log(teamMembers);
+
 
 if(data.continue==="yes") {
   init();
@@ -75,21 +78,21 @@ return "Please enter a name with at least one valid letter.";
       choices: ['Manager', 'Engineer', 'Intern'],
     },
     {
-      when: (data) => data.employeeType == "Manager",
+      when: (data) => data.employeeType === "Manager",
       type: "input",
       name: "office",
       message: "What is the manager's office number?",
      
     },
     {
-      when: (data) => data.employeeType == "Engineer",
+      when: (data) => data.employeeType === "Engineer",
       type: "input",
       name: "github",
       message: "What is the engineer's github username?",
 
   },
   {
-      when: (data) => data.employeeType == "Intern",
+      when: (data) => data.employeeType === "Intern",
       type: "input",
       name: "college",
       message: "What college/university does the intern attend?",
