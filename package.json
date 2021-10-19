@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/bmalbright/homework-10#readme",
   "dependencies": {
-    "inquirer": "^8.2.0"
+    "inquirer": "^8.2.0",
+    "jest": "^27.3.0"
   }
 }

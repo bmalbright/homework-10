@@ -1,7 +1,3 @@
-// prompt function 
-// switch function for employee class (manager, intern, engineer)
-
-
 const inquirer = require("inquirer");
 const fs = require("fs");
 const Manager = require("./lib/manager.js");
@@ -11,10 +7,9 @@ const teamMembers = []
 const generateHTML = require("./generateHTML.js");
 
 
-
 function init() {
   inquirer.prompt(questions).then((data) => {
-    console.log(data);
+ //   console.log(data);
     if(data.employeeType==='Manager') {
       const addManager = new Manager(data.name, data.id, data.email, data.office)
       teamMembers.push(addManager);
@@ -30,12 +25,12 @@ function init() {
       teamMembers.push(addIntern);
     };
 
-    console.log(teamMembers);
+//    console.log(teamMembers);
 
 if(data.continue==="yes") {
   init();
 } else {
-  createHTML();
+  writeToFile("./dist/index.html", generateHTML(teamMembers));
 }
   });
 };
@@ -107,36 +102,9 @@ return "Please enter a name with at least one valid letter.";
 
 
 function writeToFile(fileName, data) {
-  fs.writeFile(fileName,generateHTML(teamMembers), (err) => {
+  fs.writeFile(fileName, data, (err) => {
       err ? console.error(err) : console.log('HTML file generated!');
   })
-}
-
-const managerCard = (data) => {
-  return `<div class="card">
-  <img src="..." class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Manager</h5>
-    <h6 class="card-title">${data.name}</h6>
-    <p class="card-text">ID: ${data.id}</p>
-    <p class="card-text"><a href=</p>
-    <p class="card-text" >Office: ${data.office}></p>
-  </div>
-</div>
-  `
-}
-
-const employeeCard = (data) => {
-  const cards = ``
-  data.forEach((element) => {
-    if (element instanceof Manager) {
-    cards = cards + ``
-  } else if (element instanceof Engineer) {
-    cards = cards + ``
-  } else {cards = cards + ``};
-  });
-
-
 }
 
 init ();
