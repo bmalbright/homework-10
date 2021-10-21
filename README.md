@@ -5,11 +5,11 @@
 
 ## APIs or packages used:
 
-### We were not given any started code. We were given a profile of folder organization and told to install inquirer. We also used Jest to run tests on the application. I got the cards for the id cards from Bootstrap. The font is from google fonts.
+### We were not given any started code. We were given a profile of folder organization and told to install inquirer. We also used Jest to run tests on the application. I got the cards for the id cards from Bootstrap. The font is from google fonts. The validator question for the email addresses was given to me by a developer friend who said it was a standard industry code. 
 
 ## Contibutions and references:
 
-### There were several people in zoom rooms while working on this. Ethan Cho gave me some direction early on. Sue Lee was also in that meeting. Chuck Stephens and Mat Lundin helped me finish the index.js and pass the data through everything. Leah Nelson helped me refine my idea for setting up the HTML.  
+### There were several people in zoom rooms while working on this. Ethan Cho gave me some direction early on. Sue Lee was also in that meeting. Chuck Stephens and Mat Lundin helped me finish the index.js and pass the data through everything. Leah Nelson helped me refine my idea for setting up the HTML. My tutor, Ben Abbot, gave me a test question and Brad O'Dell also looked at my test questions.   
 
 [Github Repository](https://github.com/bmalbright/homework-10)
 
